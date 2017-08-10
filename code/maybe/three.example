@@ -1,0 +1,37 @@
+const candyRecommendations = [{
+  category: 'candy',
+  items: [{ name: 'Gummy Bears'}, { name: 'Candy Cane'}],
+}, {
+  category: 'chocolate',
+  items: [{ name: 'Malteasers'}, { name: 'Reese\'s Pieces'}],
+}, {
+  category: 'peanut-butter',
+  items: [{ name: 'Reese\'s Pieces'}],
+}, {
+  category: 'holiday',
+  items: [{ name: 'Candy Cane'}]
+}]
+
+const head = (array): <Maybe> => Maybe(array[0]);
+const prop = (propName, object): <Maybe> => Maybe(object[propName]);
+
+Maybe(candyRecommendations)
+// Just(candyRecommendations)
+.chain(head)
+// Just({
+//   category: 'candy',
+//   items: [{ name: 'Gummy Bears'}, { name: 'Candy Cane'}],
+// })
+.chain(prop('items'))
+// Just([{ name: 'Gummy Bears'}, { name: 'Candy Cane'}])
+.getOrElse([]);
+// [{ name: 'Gummy Bears'}, { name: 'Candy Cane'}]
+
+Maybe([])
+// Just([])
+.chain(head)
+// Nothing
+.chain(prop('items'))
+// We never get here
+.getOrElse([]);
+// []

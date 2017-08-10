@@ -1,0 +1,5 @@
+const useDeeplyNestedPropertyToDoAComplexTransform = deeplyNestedObject =>
+  deeplyNestedObject &&
+  deeplyNestedObject.a &&
+  deeplyNestedObject.a.b ?
+  transform(deeplyNestedObject.a.b) : null;

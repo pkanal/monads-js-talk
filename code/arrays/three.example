@@ -1,0 +1,26 @@
+const candyRecommendations = [{
+  category: 'candy',
+  items: [{ id: 1, name: 'Gummy Bears'}, { id: 4, name: 'Candy Cane'}],
+}, {
+  category: 'chocolate',
+  items: [{ id: 2, name: 'Malteasers'}, { id: 3, name: 'Reese\'s Pieces'}],
+}, {
+  category: 'peanut-butter',
+  items: [{ id: 3, name: 'Reese\'s Pieces'}],
+}, {
+  category: 'holiday',
+  items: [{ id: 4, name: 'Candy Cane'}]
+}]
+
+const candyNames = [
+  'Gummy Bears',
+  'Malteasers',
+  'Reese\'s Pieces',
+  'Candy Cane',
+]
+
+candyRecommendations
+  .map(recommendation => items)
+  .reduce((a, b) => a.concat(b), [])
+  .map(item => item.name)
+  .map(removeDupes)

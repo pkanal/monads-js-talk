@@ -1,0 +1,12 @@
+const replaceXWithY = (string): <IO> =>
+  IO.of(string).map(string => string.replace('x', 'y'));
+
+const appendStringWithA = (string): <IO> =>
+  IO.of(string).map(string => `${string}a`);
+
+IO
+.of('xyz')
+.chain(replaceXWithY)
+.chain(appendStringWithA)
+.run();
+// yyza

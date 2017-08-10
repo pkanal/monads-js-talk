@@ -1,0 +1,36 @@
+const westOfHouse = () => Right({
+  message: `
+    West of House
+    This is an open field west of a white house, with a boarded front door.
+    There is a small mailbox here. A rubber mat saying \'Welcome to Zork!\' lies by the door.
+  `,
+  options: {
+    north: northOfHouse(),
+  }
+});
+
+const northOfHouse = () => Right({
+  message: `
+    North of House
+    You are facing the north side of a white house.  There is no door here, and all the windows are barred.
+  `,
+  options: {
+    south: Left('A bear attacks you, you die'),
+    east: forest(),
+  },
+});
+
+const forest = () => Right({
+  message: `
+    Forest
+    This is a forest, with trees in all directions around you.
+  `,
+  options: {
+    west: northOfHouse(),
+  }
+})
+
+westOfHouse() // west of house
+.chain(currentPosition => currentPosition.options.north) // north of house
+.chain(currentPosition => currentPosition.options.east) // Forest
+.chain(currentPosition => currentPosition.options.west) // north of house

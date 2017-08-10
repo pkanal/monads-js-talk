@@ -1,0 +1,18 @@
+type Either = Right | Left
+
+const head = (array): <Either> => array[0] ?
+  Right(array[0]) :
+  Left('no first element!')
+
+const prop = (propName, object): <Either> => object[propName] ?
+  Right(object[propName]) :
+  Left(`no ${propName}`)
+
+Right([])
+// Right(candyRecommendations)
+.chain(head)
+// Left('no first element')
+.chain(prop('items'))
+// Never runs
+.either(error => { throw error }, item => item);
+// error thrown

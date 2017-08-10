@@ -1,0 +1,7 @@
+if (/* something */) {
+  return 'a'
+} else if (/* something else */) {
+  return 'b'
+}
+
+return 'c';

@@ -1,0 +1,3 @@
+const getCandyRecommendations =
+  fetch('https://candyrecommendations.com/')
+  .then(res => res.json())

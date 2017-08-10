@@ -1,0 +1,11 @@
+type Maybe = Just | Nothing
+
+Maybe(3)
+// Just(3)
+.getOrElse(0)
+// 3
+
+Maybe(undefined)
+// Nothing()
+.getOrElse(0)
+// 0

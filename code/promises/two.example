@@ -1,0 +1,10 @@
+const getCandyRecommendations =
+fetch('https://chocolate.com/')
+  .then(chocolate =>
+    fetch('https://candy.com/')
+    .then(candy => candy.json())
+    .then(candyJson => ({
+      ...candyJson,
+      ...chocolate.json()
+    })))
+  .then(treats => treats.data);

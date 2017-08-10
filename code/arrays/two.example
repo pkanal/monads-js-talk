@@ -1,0 +1,19 @@
+const candyRecommendations = [{
+  id: 1,
+  name: 'Gummy Bears',
+  categories: ['candy']
+}, {
+  id: 2,
+  name: 'Malteasers',
+  categories: ['chocolate']
+}, {
+  id: 3,
+  name: 'Reese\'s Pieces',
+  categories: ['chocolate', 'peanut-butter'],
+}, {
+  id: 4,
+  name: 'Candy Cane',
+  categories: ['candy', 'holiday'],
+}];
+
+const candyNames = candyRecommendations.map(recommendation => items);
