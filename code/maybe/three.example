@@ -12,8 +12,11 @@ const candyRecommendations = [{
   items: [{ name: 'Candy Cane'}]
 }]
 
-const head = (array): <Maybe> => Maybe(array[0]);
-const prop = (propName, object): <Maybe> => Maybe(object[propName]);
+const head = (array): <Maybe> =>
+  Maybe(array[0]);
+
+const prop = (propName, object): <Maybe> =>
+  Maybe(object[propName]);
 
 Maybe(candyRecommendations)
 // Just(candyRecommendations)

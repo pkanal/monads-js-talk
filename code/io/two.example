@@ -1,12 +1,16 @@
 const replaceXWithY = (string): <IO> =>
-  IO.of(string).map(string => string.replace('x', 'y'));
+IO
+.of(string)
+.map(string => string.replace('x', 'y'));
 
-const appendStringWithA = (string): <IO> =>
-  IO.of(string).map(string => `${string}a`);
+const appendWithCaFlag = (string): <IO> =>
+IO
+.of(string)
+.map(string => `${string} 🇨🇦`);
 
 IO
 .of('xyz')
 .chain(replaceXWithY)
-.chain(appendStringWithA)
+.chain(appendWithCaFlag)
 .run();
-// yyza
+// yyz 🇨🇦

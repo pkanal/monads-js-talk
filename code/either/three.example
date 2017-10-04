@@ -34,3 +34,4 @@ westOfHouse() // west of house
 .chain(currentPosition => currentPosition.options.north) // north of house
 .chain(currentPosition => currentPosition.options.east) // Forest
 .chain(currentPosition => currentPosition.options.west) // north of house
+.chain(currentPosition => currentPosition.options.south) // A bear attacks you, you die

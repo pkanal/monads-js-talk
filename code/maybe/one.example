@@ -1,4 +1,4 @@
-const useDeeplyNestedPropertyToDoAComplexTransform = deeplyNestedObject =>
+const transformedObj = deeplyNestedObject =>
   deeplyNestedObject &&
   deeplyNestedObject.a &&
   deeplyNestedObject.a.b ?

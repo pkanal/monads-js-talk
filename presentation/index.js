@@ -8,10 +8,10 @@ import {
   ListItem,
   List,
   Slide,
-  CodePane,
   Image,
   Text,
-  Link
+  Link,
+  Appear
 } from "spectacle";
 
 import CodeSlide from "spectacle-code-slide";
@@ -29,15 +29,13 @@ require("./styles.css");
 
 
 const images = {
-  // city: require("../assets/city.jpg"),
-  // kat: require("../assets/kat.png"),
-  // logo: require("../assets/formidable-logo.svg"),
-  // markdown: require("../assets/markdown.png"),
   googleSearch: require("../assets/google-search.png"),
   haskellDocs: require("../assets/haskell-docs.png"),
   slackNotification: require("../assets/slack-notifications.jpg"),
   zork: require("../assets/zork.jpg"),
-  jake: require("../assets/jake.gif")
+  jake: require("../assets/jake.gif"),
+  lego: require("../assets/lego.gif"),
+  powerpoint: require("../assets/powerpoint.gif")
 };
 
 const examples = {
@@ -73,10 +71,17 @@ const examples = {
 preloader(images);
 
 const theme = createTheme({
+  // primary: "#D8DBE2",
+  // secondary: "#373F51",
+  // tertiary: "#F9F291",
+  // quartenary: "#58A4B0",
+  // quint: '#798DBA'
   primary: "#D8DBE2",
-  secondary: "#373F51",
-  tertiary: "#DAA49A",
-  quartenary: "#58A4B0"
+  secondary: "#D7A6A3",
+  tertiary: "#344472" ,
+  quartenary: "#D83343",
+  quint: "#798DBA",
+
 }, {
   primary: { name: "Montserrat", googleFont: true, styles: [ "400", "700" ] },
   secondary: { name: "Lato", googleFont: true, styles: [ "400", "700" ] }
@@ -86,58 +91,64 @@ export default class Presentation extends React.Component {
   render() {
     return (
       <Deck transition={["fade"]} transitionDuration={300} theme={theme} progress="bar">
-        <Slide transition={["fade"]} bgColor="secondary" style={{ width: '75%'}}>
-          <p className='white tl'>Aug 11 2017</p>
-          <h1 className='white tl'>Control Flow with Monads in JavaScript</h1>
+        <Slide transition={["fade"]} bgColor="tertiary" style={{ width: '75%'}}>
+          <h1 className='white tl'>JavaScript ❤️ Monads</h1>
           <p className='white tl'>Purvi Kanal</p>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>What is a Monad?</Heading>
+          <Heading size={2} textColor="primary" caps>What is a Monad?</Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
           <Heading size={6} textColor="secondary" caps>😬😬😬</Heading>
-          <Image height="25rem" src={ images.googleSearch } />
+          <Image height="30rem" src={ images.googleSearch } />
         </Slide>
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
           <Heading size={6} textColor="secondary" caps>😬😬😬</Heading>
           <Image src={ images.haskellDocs } />
         </Slide>
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>A monad has to be able to...</Heading>
+          <Heading size={5} textColor="tertiary" caps>A monad has to be able to...</Heading>
           <List>
-            <ListItem>Contain a value</ListItem>
-            <ListItem>Transform the contained value</ListItem>
-            <ListItem>Chain operations on that data structure</ListItem>
+            <Appear>
+              <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">
+                Contain a value
+              </Text>
+            </Appear>
+            <Appear>
+              <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">
+                Transform value
+              </Text>
+            </Appear>
+            <Appear>
+              <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">
+                Chain operations that return that data structure
+              </Text>
+            </Appear>
           </List>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Arrays</Heading>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="secondary">
-          <Heading size={6}>Container</Heading>
-          <CodePane lang="javascript" source={ examples.arrays.one } />
-        </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value</ListItem>
-            <ListItem>Chain operations on that data structure</ListItem>
-          </List>
+          <Heading size={2} textColor="primary" caps>Arrays</Heading>
         </Slide>
         <CodeSlide
           transition={[]}
           ranges={[
             { loc: [0, 17] },
-            { loc: [18, 19], title: "Map" }
+            { loc: [18, 21], title: "Map" }
           ]}
           lang="js"
           code={ examples.arrays.two }
         />
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
           <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value ✅</ListItem>
-            <ListItem>Chain operations on that data structure</ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Contain a value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Transform value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ❓Chain operations
+            </ListItem>
           </List>
         </Slide>
         <CodeSlide
@@ -154,121 +165,109 @@ export default class Presentation extends React.Component {
         />
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
           <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value ✅</ListItem>
-            <ListItem>Chain operations ❌</ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Contain a value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Transform value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ❌ Chain operations
+            </ListItem>
           </List>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Promises</Heading>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value</ListItem>
-            <ListItem>Chain operations on that data structure</ListItem>
-          </List>
+          <Heading size={2} textColor="primary" caps>Observables</Heading>
         </Slide>
         <CodeSlide
+          showLineNumbers={false}
           transition={[]}
           ranges={[
-            { loc: [0, 4] },
-            { loc: [1, 2] },
-            { loc: [2, 3], title: "Transforms result" }
-          ]}
-          lang="js"
-          code={ examples.promises.one }
-        />
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value ❓</ListItem>
-            <ListItem>Chain operations</ListItem>
-          </List>
-        </Slide>
-        <CodeSlide
-          transition={[]}
-          ranges={[
-            { loc: [0, 10] },
-            { loc: [2, 3] },
-            { loc: [9, 10] },
-            { loc: [3, 8], title: "Recursively flattens" }
-          ]}
-          lang="js"
-          code={ examples.promises.two }
-        />
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value ❓</ListItem>
-            <ListItem>Chain operations ❓</ListItem>
-          </List>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="tertiary" caps>Then</Heading>
-            <List>
-              <ListItem>Unwraps value in a promise</ListItem>
-              <ListItem>Transforms value</ListItem>
-              <ListItem>Recursively flattens promises</ListItem>
-            </List>
-        </Slide>
-        <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Observables</Heading>
-        </Slide>
-        <CodeSlide
-          transition={[]}
-          ranges={[
-            { loc: [0, 4] },
-            { loc: [0, 2] },
-            { loc: [0, 4] }
+            { loc: [0, 1] },
+            { loc: [1, 3] }
           ]}
           lang="js"
           code={ examples.observables.one }
         />
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
           <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value ✅</ListItem>
-            <ListItem>Chain operations</ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Contain a value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Transform value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ❓Chain operations
+            </ListItem>
           </List>
         </Slide>
         <CodeSlide
+          showLineNumbers={false}
           transition={[]}
           ranges={[
-            { loc: [0, 6] },
             { loc: [0, 2] },
-            { loc: [2, 4] },
-            { loc: [3, 6] }
+            { loc: [2, 6] },
+            { loc: [6, 10] }
           ]}
           lang="js"
           code={ examples.observables.two }
         />
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
           <List>
-            <ListItem>Contain a value ✅</ListItem>
-            <ListItem>Transform the contained value ✅</ListItem>
-            <ListItem>Chain operations ✅</ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Contain a value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Transform value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Chain operations
+            </ListItem>
           </List>
         </Slide>
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>I/O Monad</Heading>
+          <Heading size={2} textColor="primary" caps>Promises</Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="primary" caps>Monad Constraints</Heading>
           <List>
-            <ListItem>Wrap a value</ListItem>
-            <ListItem>Transform the wrapped value</ListItem>
-            <ListItem>Chain operations for the same type of data structure</ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ✅ Contain a value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ❓ Transform value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              ❓ Chain operations
+            </ListItem>
+          </List>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="tertiary">
+          <Heading size={2} textColor="primary" caps>I/O Monad</Heading>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
+          <Heading textAlign="left" size={4} textColor="tertiary" caps>Monad Constraints</Heading>
+          <List>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              Contain a value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              Transform value
+            </ListItem>
+            <ListItem style={{ listStyle: "none", marginBottom: "3rem" }}>
+              Chain operations on the same kind of data structure
+            </ListItem>
           </List>
         </Slide>
         <CodeSlide
+          showLineNumbers={false}
           transition={[]}
           ranges={[
             { loc: [0, 5] },
-            { loc: [0, 1], title: "Wrapper" },
-            { loc: [1, 2], title: "Transform" },
-            { loc: [2, 3], title: "Get value" },
-            { loc: [3, 5] }
+            { loc: [0, 1] },
+            { loc: [1, 2], title: "Wrapper" },
+            { loc: [2, 3], title: "Transform" },
+            { loc: [3, 5], title: "Get value" }
           ]}
           lang="js"
           code={ examples.io.one }
@@ -276,25 +275,26 @@ export default class Presentation extends React.Component {
         <CodeSlide
           transition={[]}
           ranges={[
-            { loc: [0, 2], title: "Building Blocks" },
-            { loc: [3, 5], title: "Building Blocks" },
-            { loc: [6, 8] },
-            { loc: [8, 9], title: "Replace" },
-            { loc: [9, 10], title: "Append" },
-            { loc: [10, 12] }
+            { loc: [0, 4], title: "Building Blocks" },
+            { loc: [5, 9], title: "Building Blocks" },
+            { loc: [10, 12] },
+            { loc: [12, 13], title: "Replace" },
+            { loc: [13, 14], title: "Append" },
+            { loc: [14, 16] }
           ]}
           lang="js"
           code={ examples.io.two }
         />
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Null Checking</Heading>
+          <Heading size={2} textColor="primary" caps>Null Checking</Heading>
         </Slide>
         <CodeSlide
+          showLineNumbers={false}
           transition={[]}
           ranges={[
             { loc: [0, 1] },
             { loc: [1, 4] },
-            { loc: [0, 5] }
+            { loc: [4, 5] }
           ]}
           lang="js"
           code={ examples.maybe.one }
@@ -316,21 +316,20 @@ export default class Presentation extends React.Component {
             { loc: [0, 13] },
             { loc: [14, 16] },
             { loc: [17, 19] },
-            { loc: [19, 20] },
-            { loc: [19, 24] },
-            { loc: [24, 25] },
-            { loc: [24, 26] },
-            { loc: [26, 28] },
+            { loc: [20, 22] },
+            { loc: [22, 27] },
+            { loc: [27, 29] },
             { loc: [29, 31] },
-            { loc: [31, 33] },
-            { loc: [33, 35] },
-            { loc: [35, 37] }
+            { loc: [32, 34] },
+            { loc: [34, 36] },
+            { loc: [36, 38] },
+            { loc: [38, 40] }
           ]}
           lang="js"
           code={ examples.maybe.three }
         />
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Control Flow</Heading>
+          <Heading size={2} textColor="primary" caps>Control Flow</Heading>
         </Slide>
         <CodeSlide
           transition={[]}
@@ -343,33 +342,51 @@ export default class Presentation extends React.Component {
           lang="js"
           code={ examples.either.one }
         />
-        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Image src={ images.slackNotification } height="40rem"/>
-        </Slide>
         <CodeSlide
           transition={[]}
           ranges={[
             { loc: [0, 1] },
-            { loc: [2, 9] },
-            { loc: [10, 12] },
+            { loc: [2, 11] },
             { loc: [12, 14] },
             { loc: [14, 16] },
-            { loc: [16, 18] }
+            { loc: [16, 18] },
+            { loc: [18, 23] }
           ]}
           lang="js"
           code={ examples.either.two }
         />
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>Zork: The Great Underground Empire</Heading>
-          <Image src={ images.zork } height="30rem"/>
+          <Image src={ images.slackNotification } height="40rem"/>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>Zork Demo</Heading>
+          <Heading size={6} textColor="tertiary" caps>Zork: The Great Underground Empire</Heading>
+          <Image src={ images.zork } height="20rem"/>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
+          <Heading size={4} textColor="tertiary" caps>Zork</Heading>
+            <Appear>
+              <Text textColor="tertiary" size={1} textAlign="left" margin="3rem">
+                West of House
+                This is an open field west of a white house, with a boarded front door.
+                There is a small mailbox here. A rubber mat saying 'Welcome to Zork!' lies by the door.
+              </Text>
+            </Appear>
+            <Appear>
+              <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">
+                > north
+              </Text>
+            </Appear>
+            <Appear>
+              <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">
+                North of House
+                You are facing the north side of a white house.  There is no door here, and all the windows are barred
+              </Text>
+            </Appear>
         </Slide>
         <CodeSlide
           transition={[]}
           ranges={[
-            { loc: [0, 10], title: "Start with a Right" },
+            { loc: [0, 10] },
             { loc: [1, 6] },
             { loc: [6, 9] },
             { loc: [11, 21] },
@@ -384,16 +401,16 @@ export default class Presentation extends React.Component {
             { loc: [23, 27] },
             { loc: [35, 36] },
             { loc: [28, 29] },
-            { loc: [2, 6] }
+            { loc: [12, 16] }
           ]}
           lang="js"
           code={ examples.either.three }
         />
         <Slide transition={["fade"]} bgColor="tertiary">
-          <Heading size={4} textColor="primary" caps>Caveats</Heading>
+          <Heading size={2} textColor="primary" caps>Caveats</Heading>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>Naming Conventions</Heading>
+          <Heading size={4} textAlign="Left" textColor="tertiary" caps>Naming Conventions</Heading>
           <List>
             <ListItem>flatMap</ListItem>
             <ListItem>chain</ListItem>
@@ -401,9 +418,7 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>Specs</Heading>
-          <Text>Monads are conceptual</Text>
-          <Text>Options in JS</Text>
+          <Heading size={4} textAlign="Left" textColor="tertiary" caps>Monad Spec</Heading>
           <List>
             <ListItem>
               <Link href="https://github.com/fantasyland/fantasy-land">fantasy-land</Link>
@@ -415,6 +430,16 @@ export default class Presentation extends React.Component {
               <Link href="https://monet.github.io/monet.js/">monetjs</Link>
             </ListItem>
           </List>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
+          <Heading size={4} textAlign="Left" textColor="tertiary" caps>When to use monads</Heading>
+          <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">Functions are returing monads</Text>
+          <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">Null Checking</Text>
+          <Text textColor="tertiary" size={6} textAlign="left" margin="3rem">Complex Control Flow</Text>
+        </Slide>
+        <Slide transition={["fade"]} bgColor="primary" textColor="tertiary">
+          <Heading size={4} textColor="tertiary" caps>Thank you!</Heading>
+          <Image src={ images.powerpoint } height="20rem"/>
         </Slide>
       </Deck>
     );

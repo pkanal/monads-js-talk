@@ -16,4 +16,6 @@ const candyRecommendations = [{
   categories: ['candy', 'holiday'],
 }];
 
-const candyNames = candyRecommendations.map(recommendation => items);
+const candyNames =
+  candyRecommendations
+  .map(recommendation => recommendation.name);
